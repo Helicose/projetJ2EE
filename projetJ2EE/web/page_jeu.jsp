@@ -25,7 +25,7 @@
             
             if(session.getAttribute("nombreATrouver") == null){
                 Random rand = new Random();
-                nombreATrouver = rand.nextInt(101)+1;
+                nombreATrouver = rand.nextInt(101)-1;
             }
             else{
                 nombreATrouver = Integer.parseInt(session.getAttribute("nombreATrouver").toString());
