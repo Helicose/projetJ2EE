@@ -16,8 +16,8 @@
         <%
             int nbEssais = 0;
             int choix = 0;
-            if (request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
-                choix = Integer.parseInt(request.getParameter("choix"));
+            if (request.getParameter("reset") == null && request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
+                choix = Integer.parseInt(request.getParameter("choix").toString());
             }
             if (request.getParameter("reset") != null && session.getAttribute("essais") != null){
                 session.setAttribute("essais", Integer.toString(-1));

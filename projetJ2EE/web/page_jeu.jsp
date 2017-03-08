@@ -59,6 +59,25 @@
         
         
         <form action="action.jsp">
+            <table>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                
+            </table>
             Choisir un nombre : <input type="text" name="choix" value="" />
             <input type="submit" name="envoyer" value="Envoyer" />
             <input type="submit" name="reset" value="Nouvelle partie" />
