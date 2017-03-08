@@ -4,6 +4,7 @@
     Author     : langlois
 --%>
 
+<%@page import="java.util.Random"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,8 +15,21 @@
     <body>
         <%
             int nbEssais = 0;
-            int choix = Integer.parseInt(request.getParameter("choix"));
+            int choix = 0;
+            if (request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
+                choix = Integer.parseInt(request.getParameter("choix"));
+            }
+            if (request.getParameter("reset") != null && session.getAttribute("essais") != null){
+                session.setAttribute("essais", Integer.toString(-1));
+                Random rand = new Random();
+                int nombreATrouver = rand.nextInt(101)+1;
+                session.setAttribute("nombreATrouver", nombreATrouver);
+                choix = -7887664;
+            }
+            
             int nombreATrouver = Integer.parseInt(session.getAttribute("nombreATrouver").toString());
+            
+            
             
             RequestDispatcher disp;
             
@@ -27,8 +41,16 @@
                 disp = request.getRequestDispatcher("page_jeu.jsp?resultat=pasassez");
             }
             
-            else{
+            else if (choix > nombreATrouver){
                 disp = request.getRequestDispatcher("page_jeu.jsp?resultat=trop");
+            }
+            
+            else{
+                disp = request.getRequestDispatcher("page_jeu.jsp?resultat=blabla");
+            }
+            
+            if (choix == -7887664){
+                disp = request.getRequestDispatcher("page_jeu.jsp");
             }
             
             if(session.getAttribute("essais") == null){

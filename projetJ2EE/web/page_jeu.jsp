@@ -61,6 +61,7 @@
         <form action="action.jsp">
             Choisir un nombre : <input type="text" name="choix" value="" />
             <input type="submit" name="envoyer" value="Envoyer" />
+            <input type="submit" name="reset" value="Nouvelle partie" />
         </form>
         
         
