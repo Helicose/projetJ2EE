@@ -10,10 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Le juste prix</h1>
+        <h1 id="titre">Le juste prix</h1>
         <%
             int nombreATrouver = 0;
             int nbEssais = 0;
@@ -56,35 +57,21 @@
                 }
             }
         %>
-        
-        
         <form action="action.jsp">
-            <table>
-                <tr>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                
-            </table>
-            Choisir un nombre : <input type="text" name="choix" value="" />
-            <input type="submit" name="envoyer" value="Envoyer" />
-            <input type="submit" name="reset" value="Nouvelle partie" />
+            <div id ="jeu">
+
+                    <input id="choix" class="trucdanschoix" type="number" name="choix" value="" />
+                    <div id="resultats" class="trucdanschoix">
+                        <div id="moins">-</div>
+                        <div id="plus">+</div>
+                    </div>
+                    <input id="verification" class="trucdanschoix" type="submit" name="envoyer" value="Envoyer" />
+                    
+            </div>
+            <input id="stats" type="submit" name="reset" value="Accès aux statistiques" width="100%" height="100%"/>
+            <input type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
+
         </form>
-        
-        
-        
     </body>
     
 </html>
