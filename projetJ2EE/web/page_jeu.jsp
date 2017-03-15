@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="./style.css" />
         <title>JSP Page</title>
     </head>
     <body>
@@ -19,15 +19,14 @@
             int nombreATrouver = 0;
             int nbEssais = 0;
             String resultat;
-            
+                     
             if (session.getAttribute("essais") != null){
                 nbEssais = Integer.parseInt(session.getAttribute("essais").toString());
-            }
-            
+            }       
             
             if(session.getAttribute("nombreATrouver") == null){
                 Random rand = new Random();
-                nombreATrouver = rand.nextInt(101)-1;
+                nombreATrouver = rand.nextInt(99)+1;
             }
             else{
                 nombreATrouver = Integer.parseInt(session.getAttribute("nombreATrouver").toString());
@@ -61,7 +60,7 @@
         <form action="action.jsp">
             <div id ="jeu">
 
-                    <input id="choix" class="trucdanschoix" type="number" name="choix" value="" />
+                    <input id="choix" class="trucdanschoix" type="number" name="choix" value="" autofocus />
                     <div id="resultats" class="trucdanschoix">
                         <%
                         if(request.getParameter("resultat") != null){
@@ -92,7 +91,6 @@
                         %>
                         
                     </div>
-                    
                     <%
                     if(request.getParameter("resultat") != null){
                         resultat = request.getParameter("resultat").toString();
@@ -109,10 +107,9 @@
                     
                     %>
                     
-                    
+                    <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
             </div>
-            <input id="stats" type="submit" name="reset" value="Accès aux statistiques" width="100%" height="100%"/>
-            <input type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
+            
 
         </form>
     </body>
