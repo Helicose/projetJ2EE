@@ -18,6 +18,7 @@
         <%
             int nombreATrouver = 0;
             int nbEssais = 0;
+            String resultat;
             
             if (session.getAttribute("essais") != null){
                 nbEssais = Integer.parseInt(session.getAttribute("essais").toString());
@@ -37,7 +38,7 @@
             
             if(request.getParameter("resultat") != null){
                 out.println("<br/>");
-                String resultat = request.getParameter("resultat").toString();
+                resultat = request.getParameter("resultat").toString();
                 
                 if (resultat.equals("bingo")){
                     out.println("Vous avez trouvé le nombre !");
@@ -62,10 +63,52 @@
 
                     <input id="choix" class="trucdanschoix" type="number" name="choix" value="" />
                     <div id="resultats" class="trucdanschoix">
-                        <div id="moins">-</div>
-                        <div id="plus">+</div>
+                        <%
+                        if(request.getParameter("resultat") != null){
+                            resultat = request.getParameter("resultat").toString();
+
+                            if (resultat.equals("bingo")){ 
+                                %> <div id="moins" style="background-color:#66BB6A;">-</div>
+                                <div id="plus" style="background-color:#66BB6A;">+</div> <%
+                            }
+                            else if (resultat.equals("pasassez")){
+                                %> <div id="moins" style="background-color:#B0BEC5;">-</div>
+                                <div id="plus" style="background-color:#81D4FA;">+</div> <%
+                            }
+
+                            else if (resultat.equals("trop")){
+                                %> <div id="moins" style="background-color:#81D4FA;">-</div>
+                                <div id="plus" style="background-color:#B0BEC5;">+</div> <%
+                            }
+                            else{
+                                %> <div id="moins">-</div>
+                                <div id="plus">+</div> <%
+                            }
+                        }
+                        else{
+                                %> <div id="moins">-</div>
+                                <div id="plus">+</div> <%
+                            }
+                        %>
+                        
                     </div>
-                    <input id="verification" class="trucdanschoix" type="submit" name="envoyer" value="Envoyer" />
+                    
+                    <%
+                    if(request.getParameter("resultat") != null){
+                        resultat = request.getParameter("resultat").toString();
+                        if (resultat.equals("bingo")){ 
+                            %> <input id="verification" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;"/> <%
+                        }
+                        else{
+                            %> <input id="verification" class="trucdanschoix" type="submit" name="envoyer" value="Envoyer" style="color: black;" /> <%
+                        }
+                    }
+                    else{
+                            %> <input id="verification" class="trucdanschoix" type="submit" name="envoyer" value="Envoyer" style="color: black;" /> <%
+                    }
+                    
+                    %>
+                    
                     
             </div>
             <input id="stats" type="submit" name="reset" value="Accès aux statistiques" width="100%" height="100%"/>
