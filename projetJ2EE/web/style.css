@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 mars 2017, 15:25:32
+    Author     : langlois
+*/
+body{
+    background-color: #ECEFF1;
+    display: block;
+}
+
+.trucdanschoix{
+    width:90%;
+    height: 30%;
+    background-color: #B0BEC5;
+    margin: 20px;
+    line-height:200px;
+    text-align:center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#jeu{
+    width:60%;
+    height:600px;
+    margin:auto;
+}
+
+#reset{
+    margin-right: 120px;
+    margin-top: 10px;
+    height: 50px;
+    width:200px;
+    display:inline-block;
+    float:right;
+    font-size:20px;
+    line-height:0;
+}
+
+#plus{
+    width:45%;
+    height:100%;
+    display:inline-block;
+    float: right;
+    background-color: #B0BEC5;
+    margin-left: 5%;
+    font-size:60px;
+}
+
+#moins{
+    width:45%;
+    height:100%;
+    display:inline-block;
+    float: left;
+    background-color: #B0BEC5;
+    margin-right: 5%;
+    font-size:60px;
+}
+
+#resultats{
+    background-color: #ECEFF1;
+}
+
+#titre{
+    text-align: center;
+}
+
+#choix{
+    font-size:60px;
+}
