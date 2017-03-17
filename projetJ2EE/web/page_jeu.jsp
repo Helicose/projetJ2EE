@@ -144,6 +144,7 @@
                     
                     %>
                     
+                    <input id="reset" class="trucdanschoix" type="submit" name="stats" value="Statistiques" width="100%" height="100%"/>
                     <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
             </div>
             

@@ -16,7 +16,9 @@
         <%
             int nbEssais = 0;
             int choix = 0;
-            if (request.getParameter("reset") == null && request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
+            RequestDispatcher disp;
+            
+            if (request.getParameter("stats") == null && request.getParameter("reset") == null && request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
                 choix = Integer.parseInt(request.getParameter("choix").toString());
             }
             if (request.getParameter("reset") != null && session.getAttribute("essais") != null){
@@ -28,10 +30,6 @@
             }
             
             int nombreATrouver = Integer.parseInt(session.getAttribute("nombreATrouver").toString());
-            
-            
-            
-            RequestDispatcher disp;
             
             if (choix == nombreATrouver){
                 disp = request.getRequestDispatcher("page_jeu.jsp?resultat=bingo");
@@ -59,6 +57,10 @@
             else{
                 int nbEssaisActuel = Integer.parseInt(session.getAttribute("essais").toString());
                 session.setAttribute("essais", Integer.toString(nbEssaisActuel+1));
+            }
+            
+            if(request.getParameter("stats") != null){
+                disp = request.getRequestDispatcher("statistiques.jsp");
             }
             
             
