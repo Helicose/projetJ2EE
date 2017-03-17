@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 08 Mars 2017 à 13:19
+-- Généré le :  Ven 17 Mars 2017 à 10:46
 -- Version du serveur :  5.6.16
 -- Version de PHP :  5.5.11
 
@@ -28,10 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `partie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `chemin` int(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `chemin` (`chemin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `email` varchar(50) NOT NULL,
+  `nombre` int(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `partie`
+--
+
+INSERT INTO `partie` (`id`, `email`, `nombre`) VALUES
+(1, 'cmoi@coucou.fr', 4);
 
 -- --------------------------------------------------------
 
@@ -44,6 +51,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(20) NOT NULL,
   PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`login`, `password`) VALUES
+('cmoi@coucou.fr', 'azerty');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
