@@ -27,9 +27,7 @@
             
             Connection conn=null;
             Statement stmt=null;
-            
-            out.println("test 1 : " + email );
-            
+                        
             try{
                 Class.forName("com.mysql.jdbc.Driver");
             }catch(Exception e){
@@ -80,7 +78,6 @@
                 }
             }
             
-            out.println("test 2 : " + email );
         %>
         
         <form action="action.jsp">
@@ -123,7 +120,6 @@
                             
                             try{
                                 email = session.getAttribute("email").toString();
-                                out.println("test 3 : " + email + "fin du test");
                                 String req = "INSERT INTO partie(email, nombre) VALUES(?,?)";
                                 PreparedStatement st = conn.prepareStatement(req);
                                 st.setString(1,email);

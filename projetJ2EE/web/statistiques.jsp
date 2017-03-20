@@ -43,18 +43,25 @@
             }catch(Exception e){
                 out.print(e);
             }
-                   
-            if (listeEmail.size() != 0){
-                int max = 0;
+                  
+            int nbParties = listeEmail.size();
+            if (nbParties != 0){
+                int max = listeNombre.get(0);
+                int min = listeNombre.get(0);
                 int derniere = listeNombre.get(listeNombre.size()-1);
                 for (int i=0; i<listeEmail.size(); i++){
                     if (listeNombre.get(i) > max){
                         max = listeNombre.get(i);
                     }
+                    if (listeNombre.get(i) < min){
+                        min = listeNombre.get(i);
+                    }
                 }
                 
-                out.println("Dernière partie : "+ derniere +" essais");
-                out.println("Max : "+ max +" essais");
+                out.println("Nombre de parties : "+ nbParties +" <br/>");
+                out.println("Dernière partie : "+ derniere +" essais <br/>"); 
+                out.println("Max : "+ max +" essais <br/>");
+                out.println("Min : "+ min +" essais <br/>");
             }
             
             
