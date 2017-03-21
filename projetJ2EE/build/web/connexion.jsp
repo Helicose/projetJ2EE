@@ -17,7 +17,10 @@
         <%
             Connection conn=null;
             Statement stmt=null;
-            
+            if(session.getAttribute("essais")!=null && session.getAttribute("nombreATrouver")!=null){
+                session.removeAttribute("essais");
+                session.removeAttribute("nombreATrouver");
+            }
             String login = request.getParameter("login");
             String password = request.getParameter("password");
             out.print("Erreur 1 : <br/>");
@@ -36,6 +39,9 @@
             }
             String req = "SELECT password from user where login='"+login+"';";
             out.print("<br/>Erreur 3 : <br/>");
+            session = request.getSession();
+            session.setAttribute("login",login);
+            session.setAttribute("password",password);
             try{
                 PreparedStatement st = conn.prepareStatement(req);
                 ResultSet rs=st.executeQuery(req);
@@ -48,6 +54,7 @@
                 }else{
                     %><jsp:forward page="index.html" /><%
                 }
+                
             }catch(Exception e){
                 out.print(e);
             }

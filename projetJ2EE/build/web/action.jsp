@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Le Juste Prix</title>
     </head>
     <body>
         <%
@@ -18,15 +18,28 @@
             int choix = 0;
             RequestDispatcher disp;
             
-            if (request.getParameter("stats") == null && request.getParameter("reset") == null && request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
-                choix = Integer.parseInt(request.getParameter("choix").toString());
+            if (request.getParameter("deco") != null && session.getAttribute("login") != null){
+                session = request.getSession();
+                session.removeAttribute("login");
+                session.removeAttribute("password");
+                session.removeAttribute("essais");
+                session.removeAttribute("nombreATrouver");
+                session.invalidate();
+                %><jsp:forward page="index.jsp" /><%
             }
-            if (request.getParameter("reset") != null && session.getAttribute("essais") != null){
+            else if (request.getParameter("reset") != null && session.getAttribute("essais") != null){
                 session.setAttribute("essais", Integer.toString(-1));
                 Random rand = new Random();
                 int nombreATrouver = rand.nextInt(101)+1;
                 session.setAttribute("nombreATrouver", nombreATrouver);
                 choix = -7887664;
+            }
+            else if(request.getParameter("stats") == null && request.getParameter("reset") == null && request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
+                choix = Integer.parseInt(request.getParameter("choix").toString());
+//                if (session.getAttribute("essais") != null){
+//                    int nbEssaisActuel = Integer.parseInt(session.getAttribute("essais").toString());
+//                    session.setAttribute("essais", Integer.toString(nbEssaisActuel-1));
+//                }          
             }
             
             int nombreATrouver = Integer.parseInt(session.getAttribute("nombreATrouver").toString());
@@ -62,8 +75,6 @@
             if(request.getParameter("stats") != null){
                 disp = request.getRequestDispatcher("statistiques.jsp");
             }
-            
-            
             disp.forward(request, response);
         %>
     </body>

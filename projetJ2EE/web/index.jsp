@@ -1,16 +1,22 @@
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<%-- 
+    Document   : index
+    Created on : 21 mars 2017, 17:17:06
+    Author     : langlois
+--%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>AccÃ¨s au Juste Prix</title>
+        <title>Accès au Juste Prix</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <%
+            session = request.getSession();
+                session.removeAttribute("login");
+                session.removeAttribute("password");
+                session.invalidate();
+        %>
         <h1>Le Juste Prix</h1>
         <h2>Page de connexion</h2>
         <hr/>
@@ -33,7 +39,7 @@ and open the template in the editor.
             </table>
             <br/>
             <br/>
-            <div>Vous n'Ãªtes pas inscrit? <a href="inscription.jsp">Cliquez ici pour nous rejoindre.</a></div>
+            <div>Vous n'êtes pas inscrit? <a href="inscription.jsp">Cliquez ici pour nous rejoindre.</a></div>
             
         </form>
         
