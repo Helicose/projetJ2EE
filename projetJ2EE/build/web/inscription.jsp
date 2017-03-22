@@ -23,7 +23,7 @@
             session.setAttribute("x", x);
             session.setAttribute("y", y);
         %>
-        <h1 id="titre">Le Juste Prix</h1>
+        <h1 id="titre"><a href="page_jeu.jsp">Le juste prix</a></h1>
         <h2>Inscription</h2>
         <hr/>
         <br/>

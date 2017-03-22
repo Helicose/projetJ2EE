@@ -16,7 +16,7 @@
         <title>Le Juste Prix</title>
     </head>
     <body>
-        <h1 id="titre">Le juste prix</h1>
+        <h1 id="titre"><a href="page_jeu.jsp">Le juste prix</a></h1>
         <%
             int nombreATrouver = 0;
             int nbEssais = 0;
@@ -152,7 +152,7 @@
             <%
             }
             else{
-                %><jsp:forward page="index.html" /><%
+                %><jsp:forward page="index.jsp" /><%
             }
             %>
         </form>

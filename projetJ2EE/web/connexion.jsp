@@ -15,7 +15,7 @@
         <title>Connexion - Le Juste Prix</title>
     </head>
     <body>
-        <h1 id="titre">Le Juste Prix</h1>
+        <h1 id="titre"><a href="page_jeu.jsp">Le juste prix</a></h1>
         <h2>Connexion</h2>
         <%
             Connection conn=null;
