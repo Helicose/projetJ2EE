@@ -55,6 +55,8 @@
                 }
     
                 session.setAttribute("nombreATrouver", nombreATrouver);
+                
+                /*
                 if(request.getParameter("resultat") != null){
                     out.println("<br/>");
                     resultat = request.getParameter("resultat").toString();
@@ -73,7 +75,7 @@
                     else{
                         out.println("Si cette phrase s'affiche c'est qu'il y a un problème lol");
                     }
-                }
+                }*/
             %>
 
             <form action="action.jsp">
@@ -112,7 +114,8 @@
                         if(request.getParameter("resultat") != null){
                             resultat = request.getParameter("resultat").toString();
                             if (resultat.equals("bingo")){ 
-                                %><input id="verification" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;background-color:#66BB6A"/> <%
+                                %><input id="bingo" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;background-color:#66BB6A"/>
+                                 <input id="bingo" class="trucdanschoix" type="button" value="Nombre d'essais : <%out.println(nbEssais);%>" disabled="disabled" style="color: black;background-color:#66BB6A"/><%
                                 try{
                                     email = session.getAttribute("email").toString();
                                     String req = "INSERT INTO partie(email, nombre) VALUES(?,?)";
