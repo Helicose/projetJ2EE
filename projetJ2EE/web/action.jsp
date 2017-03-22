@@ -34,6 +34,9 @@
                 session.setAttribute("nombreATrouver", nombreATrouver);
                 choix = -7887664;
             }
+            else if(request.getParameter("choix") == ""){
+                choix = 0;
+            }
             else if(request.getParameter("stats") == null && request.getParameter("reset") == null && request.getParameter("choix") != null && session.getAttribute("nombreATrouver") != null){
                 choix = Integer.parseInt(request.getParameter("choix").toString());
 //                if (session.getAttribute("essais") != null){
