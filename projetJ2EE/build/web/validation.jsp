@@ -64,7 +64,7 @@
             }
         %>
         <div>Vous êtes à présent inscrit!</div>
-        <form method="POST" action="index.html"> 
+        <form method="POST" action="index.jsp"> 
             <input type="submit" value="Valider"/>
         </form>
     </body>

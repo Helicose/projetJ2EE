@@ -56,7 +56,7 @@
     
                 session.setAttribute("nombreATrouver", nombreATrouver);
 
-                if(request.getParameter("resultat") != null){
+                /*if(request.getParameter("resultat") != null){
                     out.println("<br/>");
                     resultat = request.getParameter("resultat").toString();
 
@@ -76,7 +76,7 @@
                     else{
                         out.println("Si cette phrase s'affiche c'est qu'il y a un problème lol");
                     }
-                }
+                }*/
 
             %>
 
@@ -116,7 +116,8 @@
                         if(request.getParameter("resultat") != null){
                             resultat = request.getParameter("resultat").toString();
                             if (resultat.equals("bingo")){ 
-                                %><input id="verification" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;background-color:#66BB6A"/> <%
+                                %><input id="bingo" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;background-color:#66BB6A"/>
+                                <input id="bingo" class="trucdanschoix" type="button" value="Nombre d'essais : <%out.println(nbEssais);%>" disabled="disabled" style="color: black;background-color:#66BB6A"/><%
 
                                 try{
                                     email = session.getAttribute("email").toString();
@@ -139,10 +140,18 @@
                         }
 
                         %>
-
-                        <input id="reset" class="trucdanschoix" type="submit" name="stats" value="Statistiques" width="100%" height="100%"/>
-                        <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
-                        <input id="reset" class="trucdanschoix" type="submit" name="deco" value="Deconnexion" width="100%" height="100%"/>
+                        <div id="boutons">                            
+                            <%
+                            if(request.getParameter("resultat") != null){
+                                resultat = request.getParameter("resultat").toString();
+                                if (resultat.equals("bingo")){
+                                    out.println("<input id='reset' class='trucdanschoix' type='submit' name='stats' value='Statistiques' width='100%' height='100%'/>");
+                                }
+                            }
+                            %>
+                            <input id='reset' class='trucdanschoix' type='submit' name='deco' value='Deconnexion' width='100%' height='100%'/>
+                            <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
+                        </div>
                 </div>
             <%
             }
