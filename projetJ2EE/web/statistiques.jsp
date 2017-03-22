@@ -16,7 +16,7 @@
         <title>Statistiques</title>
     </head>
     <body>
-        <h1 id="titre">Statistiques</h1>
+        <h1 id="titre"><a href="page_jeu.jsp">Statistiques</a></h1>
         
         <%  if(session.getAttribute("login")!=null && session.getAttribute("password")!=null){
                 Connection conn=null;

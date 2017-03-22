@@ -16,8 +16,7 @@
         <title>Statistiques</title>
     </head>
     <body>
-            <h1 id="titre"><a href="page_jeu.jsp">Statistiques</a></h1>
-
+        <h1 id="titre"><a href="page_jeu.jsp">Statistiques</a></h1>
         
         <%  if(session.getAttribute("login")!=null && session.getAttribute("password")!=null){
                 Connection conn=null;
@@ -25,6 +24,7 @@
                 String email = (String)session.getAttribute("email");
                 ArrayList<String> listeEmail = new ArrayList<String>();  
                 ArrayList<Integer> listeNombre = new ArrayList<Integer>();  
+                int nombre = 0;
                 //session.setAttribute("session",(Integer)session.getAttribute("session")-1);
             
                 try{
@@ -34,12 +34,22 @@
                     out.print(e);
                 }
                 String req = "SELECT email,nombre from partie where email='"+email+"';";
+                String req2 = "SELECT avg(nombre) from partie where email='"+email+"';";
                 try{
                     PreparedStatement st = conn.prepareStatement(req);
                     ResultSet rs=st.executeQuery(req);
                     while(rs.next()){
                         listeEmail.add(rs.getString("email"));
                         listeNombre.add(rs.getInt("nombre"));
+                    }
+                }catch(Exception e){
+                    out.print(e);
+                }
+                try{
+                    PreparedStatement st2 = conn.prepareStatement(req2);
+                    ResultSet rs2=st2.executeQuery(req);
+                    while(rs2.next()){
+                        nombre=rs2.getInt("nombre");
                     }
                 }catch(Exception e){
                     out.print(e);
@@ -59,8 +69,9 @@
                     }
                     out.println("Nombre de parties : "+ nbParties +" <br/>");
                     out.println("Dernière partie : "+ derniere +" essais <br/>"); 
-                    out.println("Max : "+ max +" essais <br/>");
-                    out.println("Min : "+ min +" essais <br/>");
+                    out.println("Maximum : "+ max +" essais <br/>");
+                    out.println("Minimum : "+ min +" essais <br/>");
+                    out.println("Moyenne : "+ nombre +" essais <br/>");
                 }
             
             }else{
