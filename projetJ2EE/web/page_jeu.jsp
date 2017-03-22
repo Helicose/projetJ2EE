@@ -133,9 +133,18 @@
                         }
                         %>
 
-                        <input id="reset" class="trucdanschoix" type="submit" name="stats" value="Statistiques" width="100%" height="100%"/>
-                        <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
-                        <input id="reset" class="trucdanschoix" type="submit" name="deco" value="Deconnexion" width="100%" height="100%"/>
+                        <div id="boutons">                            
+                             <%
+                              if(request.getParameter("resultat") != null){
+                              resultat = request.getParameter("resultat").toString();
+                              if (resultat.equals("bingo")){
+                                  out.println("<input id='reset' class='trucdanschoix' type='submit' name='stats' value='Statistiques' width='100%' height='100%'/>");
+                              }
+                            }
+                            %>
+                            <input id='reset' class='trucdanschoix' type='submit' name='deco' value='Deconnexion' width='100%' height='100%'/>
+                            <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
+                        </div>
                 </div>
             <%
             }

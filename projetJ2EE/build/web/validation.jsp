@@ -26,7 +26,11 @@
             String password = request.getParameter("password");
             String verify = request.getParameter("verify");
             String stCaptcha = request.getParameter("captcha");
-            int captcha = Integer.parseInt(stCaptcha);
+            try{
+                int captcha = Integer.parseInt(stCaptcha);
+            }catch(Exception e){
+                %><jsp:forward page="index.jsp" /><%
+            }
             session.getAttribute("x");
             session.getAttribute("y");
             if(password.equals(verify)){
@@ -35,26 +39,22 @@
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                     }catch(Exception e){
-                            out.print(e);
-
+                        %><jsp:forward page="inscription.jsp" /><%
                     }
                     try{
                         conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/justeprix","root","");
                         stmt = conn.createStatement();
                     }catch(Exception e){
                         out.print(e);
-
                     }
                     String req = "INSERT INTO user(login,password) VALUES(?,?)";
                     try{
                         PreparedStatement st = conn.prepareStatement(req);
                         st.setString(1,login);
                         st.setString(2,password);
-
                         st.executeUpdate();
                     }catch(Exception e){
-                        out.print(e);
-
+                        %><jsp:forward page="inscription.jsp" /><%
                     }
                 }else{
                     %><jsp:forward page="inscription.jsp" /><%

@@ -12,10 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="./style2.css" />
         <title>Statistiques</title>
     </head>
     <body>
-        <h1>Statistiques</h1>
+        <h1 id="titre">Statistiques</h1>
         
         <%  if(session.getAttribute("login")!=null && session.getAttribute("password")!=null){
                 Connection conn=null;
@@ -30,10 +31,8 @@
                     stmt = conn.createStatement();
                 }catch(Exception e){
                     out.print(e);
-
                 }
                 String req = "SELECT email,nombre from partie where email='"+email+"';";
-
                 try{
                     PreparedStatement st = conn.prepareStatement(req);
                     ResultSet rs=st.executeQuery(req);
@@ -44,7 +43,6 @@
                 }catch(Exception e){
                     out.print(e);
                 }
-
                 int nbParties = listeEmail.size();
                 if (nbParties != 0){
                     int max = listeNombre.get(0);
@@ -58,7 +56,6 @@
                             min = listeNombre.get(i);
                         }
                     }
-
                     out.println("Nombre de parties : "+ nbParties +" <br/>");
                     out.println("Dernière partie : "+ derniere +" essais <br/>"); 
                     out.println("Max : "+ max +" essais <br/>");
@@ -66,9 +63,8 @@
                 }
             
             }else{
-                
-            }
-            
+                        %><jsp:forward page="index.jsp" /><%
+            } 
         %>
     </body>
 </html>

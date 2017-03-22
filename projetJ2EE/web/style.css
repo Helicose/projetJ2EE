@@ -7,7 +7,12 @@ and open the template in the editor.
     Created on : 10 mars 2017, 15:25:32
     Author     : langlois
 */
+@font-face {
+	font-family: "police";
+	src: url('./police.ttf');
+}
 body{
+    font-family: "police";
     background-color: #ECEFF1;
     display: block;
 }
@@ -30,12 +35,12 @@ body{
 }
 
 #reset{
-    margin-right: 120px;
+    //margin-right: 120px;
     margin-top: 10px;
     height: 50px;
     width:200px;
     display:inline-block;
-    float:right;
+    float:left;
     font-size:20px;
     line-height:0;
 }
@@ -44,7 +49,7 @@ body{
     width:45%;
     height:100%;
     display:inline-block;
-    float: right;
+    float: left;
     background-color: #B0BEC5;
     margin-left: 5%;
     font-size:60px;
@@ -69,10 +74,21 @@ body{
 }
 
 #choix{
-    font-size:60px;
+      font-size:60px;
+      text-align: center;
+ }
+ 
+#bingo{
+    height: 15%;
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 0;
 }
 
-@font-face {
-	font-family: "police";
-	src: url('./police.ttf');
+#boutons{
+    width:100%;
+    padding-right: 20%;
+    padding-left: 20%;
+    margin:0 auto;
+    display:inline-block;
 }

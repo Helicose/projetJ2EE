@@ -11,9 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="./style2.css" />
+        <title>Connexion - Le Juste Prix</title>
     </head>
     <body>
+        <h1 id="titre">Le Juste Prix</h1>
+        <h2>Connexion</h2>
         <%
             Connection conn=null;
             Statement stmt=null;
@@ -23,22 +26,19 @@
             }
             String login = request.getParameter("login");
             String password = request.getParameter("password");
-            out.print("Erreur 1 : <br/>");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
             }catch(Exception e){
-                    out.print(e);
+                    %><jsp:forward page="index.jsp" /><%
             }
-            out.print("<br/>Erreur 2 : <br/>");
             try{
                 conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/justeprix","root","");
                 stmt = conn.createStatement();
             }catch(Exception e){
-                out.print(e);
-
+                %><jsp:forward page="index.jsp" /><%
             }
             String req = "SELECT password from user where login='"+login+"';";
-            out.print("<br/>Erreur 3 : <br/>");
+            
             session = request.getSession();
             session.setAttribute("login",login);
             session.setAttribute("password",password);
@@ -52,11 +52,14 @@
                     session.setAttribute("email", login);
                     %><jsp:forward page="page_jeu.jsp" /><%
                 }else{
-                    %><jsp:forward page="index.html" /><%
+                    %><jsp:forward page="index.jsp" /><%
                 }
                 
             }catch(Exception e){
-                out.print(e);
+                out.print("<h1 id='erreur'>Erreur d'e-mail ou de mot de passe</h1>");
+                out.print("<form id='form' method:'POST' action='index.jsp'>"
+                        + "<input type='submit' value='Retour'/>"
+                        + "</form>");
             }
         %>
     </body>
