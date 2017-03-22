@@ -7,6 +7,10 @@ and open the template in the editor.
     Created on : 10 mars 2017, 15:25:32
     Author     : langlois
 */
+@font-face {
+	font-family: "police";
+	src: url('./police.ttf');
+}
 body{
     background-color: #ECEFF1;
     display: block;
