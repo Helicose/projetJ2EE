@@ -23,8 +23,11 @@
             String resultat;
             String email;
             session = request.getSession();
-            email = (String)session.getAttribute("email").toString();
-            
+            try{
+                email = (String)session.getAttribute("email").toString();
+            }catch(Exception e){
+                        %><jsp:forward page="index.jsp" /><%
+                }
             Connection conn=null;
             Statement stmt=null;
             
@@ -32,7 +35,7 @@
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                 }catch(Exception e){
-                        out.print(e);
+                        %><jsp:forward page="index.jsp" /><%
                 }
                 try{
                     conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/justeprix","root","");
@@ -40,12 +43,9 @@
                 }catch(Exception e){
                     out.print(e);
                 }
-
-
                 if (session.getAttribute("essais") != null){
                     nbEssais = Integer.parseInt(session.getAttribute("essais").toString());
                 }       
-
                 if(session.getAttribute("nombreATrouver") == null){
                     Random rand = new Random();
                     nombreATrouver = rand.nextInt(99)+1;
@@ -55,11 +55,9 @@
                 }
     
                 session.setAttribute("nombreATrouver", nombreATrouver);
-
-                /*if(request.getParameter("resultat") != null){
+                if(request.getParameter("resultat") != null){
                     out.println("<br/>");
                     resultat = request.getParameter("resultat").toString();
-
                     if (resultat.equals("bingo")){
                         out.println("Vous avez trouvé le nombre !");
                         out.println("<br/>Nombre d'essais total : "+ nbEssais);
@@ -68,7 +66,6 @@
                         out.println("C'est plus !");
                         out.println("<br/>Nombre d'essais actuel : "+ nbEssais);
                     }
-
                     else if (resultat.equals("trop")){
                         out.println("C'est moins !");
                         out.println("<br/>Nombre d'essais actuel : "+ nbEssais);
@@ -76,8 +73,7 @@
                     else{
                         out.println("Si cette phrase s'affiche c'est qu'il y a un problème lol");
                     }
-                }*/
-
+                }
             %>
 
             <form action="action.jsp">
@@ -116,9 +112,7 @@
                         if(request.getParameter("resultat") != null){
                             resultat = request.getParameter("resultat").toString();
                             if (resultat.equals("bingo")){ 
-                                %><input id="bingo" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;background-color:#66BB6A"/>
-                                <input id="bingo" class="trucdanschoix" type="button" value="Nombre d'essais : <%out.println(nbEssais);%>" disabled="disabled" style="color: black;background-color:#66BB6A"/><%
-
+                                %><input id="verification" class="trucdanschoix" type="button" value="Bravo ! Vous avez gagné !" disabled="disabled" style="color: black;background-color:#66BB6A"/> <%
                                 try{
                                     email = session.getAttribute("email").toString();
                                     String req = "INSERT INTO partie(email, nombre) VALUES(?,?)";
@@ -127,8 +121,7 @@
                                     st.setInt(2,nbEssais);
                                     st.executeUpdate();
                                 }catch(Exception e){
-                                    out.print(e);
-
+                                    %><jsp:forward page="index.jsp" /><%
                                 }
                             }
                             else{
@@ -138,20 +131,11 @@
                         else{
                                 %> <input id="verification" class="trucdanschoix" type="submit" name="envoyer" value="Envoyer" style="color: black;" /> <%
                         }
-
                         %>
-                        <div id="boutons">                            
-                            <%
-                            if(request.getParameter("resultat") != null){
-                                resultat = request.getParameter("resultat").toString();
-                                if (resultat.equals("bingo")){
-                                    out.println("<input id='reset' class='trucdanschoix' type='submit' name='stats' value='Statistiques' width='100%' height='100%'/>");
-                                }
-                            }
-                            %>
-                            <input id='reset' class='trucdanschoix' type='submit' name='deco' value='Deconnexion' width='100%' height='100%'/>
-                            <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
-                        </div>
+
+                        <input id="reset" class="trucdanschoix" type="submit" name="stats" value="Statistiques" width="100%" height="100%"/>
+                        <input id="reset" class="trucdanschoix" type="submit" name="reset" value="Nouvelle partie" width="100%" height="100%"/>
+                        <input id="reset" class="trucdanschoix" type="submit" name="deco" value="Deconnexion" width="100%" height="100%"/>
                 </div>
             <%
             }
